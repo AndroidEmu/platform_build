@@ -400,7 +400,6 @@ GRANDFATHERED_USER_MODULES += \
 	mke2fs \
 	mke2fs_host \
 	mksdcard \
-	mksnapshot \
 	mkstubs \
 	mkuserimg.sh \
 	mkyaffs2image \
@@ -503,3 +502,4 @@ GRANDFATHERED_USER_MODULES += \
 	wpa_supplicant \
 	yuv420sp2rgb \
 	zipalign
+#	mksnapshot \

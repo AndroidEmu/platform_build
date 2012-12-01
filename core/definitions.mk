@@ -1141,7 +1141,9 @@ $(hide) $(PRIVATE_CXX) \
 	-Wl,-rpath,\$$ORIGIN/../lib \
 	-shared -Wl,-soname,$(notdir $@) \
 	$(PRIVATE_LDFLAGS) \
-	$(HOST_GLOBAL_LD_DIRS) \
+	$(if $(PRIVATE_NO_DEFAULT_LD_DIRS),, \
+	  $(HOST_GLOBAL_LD_DIRS) \
+	) \
 	$(if $(PRIVATE_NO_DEFAULT_COMPILER_FLAGS),, \
 	   $(HOST_GLOBAL_LDFLAGS) \
 	) \
@@ -1307,6 +1309,15 @@ $(hide) $(PRIVATE_CXX) \
 	$(call normalize-host-libraries,$(PRIVATE_ALL_STATIC_LIBRARIES)) \
 	$(if $(PRIVATE_GROUP_STATIC_LIBRARIES),-Wl$(comma)--end-group) \
 	$(call normalize-host-libraries,$(PRIVATE_ALL_SHARED_LIBRARIES)) \
+	-Wl,-rpath-link=$(HOST_OUT_INTERMEDIATE_LIBRARIES) \
+	-Wl,-rpath,\$$ORIGIN/../lib \
+	$(if $(PRIVATE_NO_DEFAULT_LD_DIRS),, \
+	  $(HOST_GLOBAL_LD_DIRS) \
+	) \
+	$(PRIVATE_LDFLAGS) \
+	$(if $(PRIVATE_NO_DEFAULT_COMPILER_FLAGS),, \
+		$(HOST_GLOBAL_LDFLAGS) \
+	) \
 	-o $@ \
 	$(PRIVATE_LDLIBS)
 endef
