@@ -19,8 +19,8 @@ import sys
 # Put the modifications that you need to make into the /system/build.prop into this
 # function. The prop object has get(name) and put(name,value) methods.
 def mangle_build_prop(prop):
-  pass
-
+  # Drop Model name prop that will be created on boot instead
+  prop.drop("ro.product.model")
 
 # Put the modifications that you need to make into the /system/build.prop into this
 # function. The prop object has get(name) and put(name,value) methods.
@@ -54,6 +54,12 @@ class PropFile:
         self.lines[i] = key + value
         return
     self.lines.append(key + value)
+
+  def drop(self, name):
+    key = name + "="
+    for i in range(0,len(self.lines)):
+      if self.lines[i].startswith(key):
+        self.lines[i] = ""
 
   def write(self, f):
     f.write("\n".join(self.lines))
