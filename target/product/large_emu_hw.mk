@@ -28,7 +28,7 @@ PRODUCT_PACKAGES := \
     CertInstaller \
     Email \
     Exchange2 \
-    Gallery2 \
+    Gallery \
     LatinIME \
     Launcher2 \
     Music \
