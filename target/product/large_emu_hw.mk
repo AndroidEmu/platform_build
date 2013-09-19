@@ -29,7 +29,7 @@ PRODUCT_PACKAGES := \
     DrmProvider \
     Email \
     Exchange2 \
-    Gallery2 \
+    Gallery \
     LatinIME \
     Launcher2 \
     Music \
