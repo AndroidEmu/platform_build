@@ -16,7 +16,7 @@
 
 PRODUCT_PROPERTY_OVERRIDES :=
 
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
 	SystemUI \
 	AccountAndSyncSettings \
 	Camera \

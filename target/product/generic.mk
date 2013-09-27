@@ -17,7 +17,7 @@
 # This is a generic product that isn't specialized for a specific device.
 # It includes the base Android platform.
 
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
     AccountAndSyncSettings \
     DeskClock \
     AlarmProvider \

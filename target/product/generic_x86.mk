@@ -2,19 +2,32 @@
 # It includes the base Android platform. If you need Google-specific features,
 # you should derive from generic_with_google.mk
 
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
+    AccountAndSyncSettings \
     AlarmClock \
     AlarmProvider \
+    Calculator \
     Calendar \
     Camera \
+    CertInstaller \
+    DeskClock \
     DrmProvider \
     LatinIME \
+    DrmProvider \
+    Email \
+    Gallery3D \
+    Launcher2 \
     Mms \
     Music \
+    Provision \
+    Protips \
+    QuickSearchBox \
     Settings \
     Sync \
+    SystemUI \
     Updater \
     CalendarProvider \
+    SyncProvider \
     SubscribedFeedsProvider \
     SyncProvider \
     acoustics.default \
