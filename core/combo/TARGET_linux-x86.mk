@@ -80,6 +80,7 @@ TARGET_GLOBAL_CFLAGS += \
 TARGET_GLOBAL_CPPFLAGS += \
 			-fno-use-cxa-atexit
 
+TARGET_GLOBAL_CFLAGS += -D__ANDROID__
 TARGET_C_INCLUDES := \
 	$(libc_root)/arch-x86/include \
 	$(libc_root)/include \
@@ -107,6 +108,7 @@ $(TARGET_CXX) \
 	$(PRIVATE_TARGET_GLOBAL_LDFLAGS) \
 	 -nostdlib -Wl,-soname,$(notdir $@) \
 	 -shared -Bsymbolic \
+	$(TARGET_GLOBAL_CFLAGS) \
 	-fPIC -march=i686 \
 	$(PRIVATE_TARGET_GLOBAL_LD_DIRS) \
 	$(PRIVATE_TARGET_CRTBEGIN_SO_O) \

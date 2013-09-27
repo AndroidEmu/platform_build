@@ -16,7 +16,11 @@ PRODUCT_PACKAGES := \
     Updater \
     CalendarProvider \
     SubscribedFeedsProvider \
-    SyncProvider
+    SyncProvider \
+    acoustics.default \
+    alsa_ctl \
+    alsa.default \
+
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
 
@@ -26,9 +30,5 @@ PRODUCT_DEVICE := generic_x86
 PRODUCT_NAME := generic_x86
 PRODUCT_POLICY := android.policy_phone
 
-# If running on an emulator or some other device that has a LAN connection
-# that isn't a wifi connection. This will instruct init.rc to enable the
-# network connection so that you can use it with ADB
-ifdef NET_ETH0_STARTONBOOT
-  PRODUCT_PROPERTY_OVERRIDES += net.eth0.startonboot=1
-endif
+GENERIC_X86_CONFIG_MK := $(SRC_TARGET_DIR)/board/generic_x86/BoardConfig.mk
+GENERIC_X86_ANDROID_MK := $(SRC_TARGET_DIR)/board/generic_x86/AndroidBoard.mk

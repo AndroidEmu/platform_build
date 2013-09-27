@@ -19,7 +19,7 @@
 # build of the emulator, but all those aspects can be overridden
 # in inherited configurations.
 
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
     OpenWnn \
     PinyinIME \
     VoiceDialer \
