@@ -852,6 +852,35 @@ userdatatarball-nodeps: $(FS_GET_STATS)
 
 
 # -----------------------------------------------------------------
+# cache partition image
+
+ifdef BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE
+INTERNAL_CACHEIMAGE_FILES := \
+    $(filter $(TARGET_OUT_CACHE)/%,$(ALL_DEFAULT_INSTALLED_MODULES))
+
+cacheimage_intermediates := \
+    $(call intermediates-dir-for,PACKAGING,cache)
+BUILT_CACHEIMAGE_TARGET := $(PRODUCT_OUT)/cache.img
+
+define build-cacheimage-target
+  $(call pretty,"Target cache fs image: $(INSTALLED_CACHEIMAGE_TARGET)")
+  @mkdir -p $(TARGET_OUT_CACHE)
+  @mkdir -p $(cacheimage_intermediates) && rm -rf $(cacheimage_intermediates)/cache_image_info.txt
+  $(call build-userimage-ext-target,$(TARGET_OUT_CACHE),$(INSTALLED_CACHEIMAGE_TARGET),cache,$(INTERNAL_USERIMAGES_EXT_VARIANT),$(BOARD_CACHEIMAGE_PARTITION_SIZE))
+endef
+
+# We just build this directly to the install location.
+INSTALLED_CACHEIMAGE_TARGET := $(BUILT_CACHEIMAGE_TARGET)
+$(INSTALLED_CACHEIMAGE_TARGET): $(INTERNAL_USERIMAGES_DEPS) $(INTERNAL_CACHEIMAGE_FILES)
+	$(call build-cacheimage-target,$@)
+
+.PHONY: cacheimage-nodeps
+cacheimage-nodeps: | $(INTERNAL_USERIMAGES_DEPS)
+	$(call build-cacheimage-target,$@)
+
+endif # BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE
+
+# -----------------------------------------------------------------
 # bring in the installer image generation defines if necessary
 ifeq ($(TARGET_USE_DISKINSTALLER),true)
 include bootable/diskinstaller/config.mk
@@ -928,6 +957,7 @@ $(BUILT_TARGET_FILES_PACKAGE): \
 		$(INSTALLED_RECOVERYIMAGE_TARGET) \
 		$(INSTALLED_SYSTEMIMAGE) \
 		$(INSTALLED_USERDATAIMAGE_TARGET) \
+                $(INSTALLED_CACHEIMAGE_TARGET) \
 		$(INSTALLED_ANDROID_INFO_TXT_TARGET) \
 		$(built_ota_tools) \
 		$(APKCERTS_FILE) \

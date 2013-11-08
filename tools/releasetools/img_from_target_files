@@ -170,6 +170,7 @@ def main(argv):
   common.AddRecovery(output_zip, OPTIONS.info_dict)
   AddSystem(output_zip)
   AddUserdata(output_zip)
+  AddCache(output_zip)
   CopyInfo(output_zip)
 
   print "cleaning up..."
