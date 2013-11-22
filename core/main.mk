@@ -220,7 +220,7 @@ user_variant := $(filter userdebug user,$(TARGET_BUILD_VARIANT))
 enable_target_debugging := true
 ifneq (,$(user_variant))
   # Target is secure in user builds.
-  ifeq ($(user_variant),userdebug)
+  ifneq ($(user_variant),userdebug)
 	ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=1
   endif
 
