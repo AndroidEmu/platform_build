@@ -262,6 +262,10 @@ GRANDFATHERED_USER_MODULES += \
 	libpng \
 	libpopt \
 	libpower \
+	libprotobuf-cpp-2.3.0-full \
+	libprotobuf-cpp-2.3.0-lite \
+	libprotobuf-java-2.3.0-lite \
+	libprotobuf-java-2.3.0-micro \
 	librecovery_ui_htc \
 	libreference-cdma-sms \
 	libreference-ril \
