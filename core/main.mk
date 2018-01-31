@@ -263,6 +263,22 @@ $(info ***************************************************************)
 $(error stopping)
 endif
 
+ifneq ($(filter android_system_disk_vdi android_data_disk_vdi installer_vdi, $(MAKECMDGOALS)),)
+dont_bother := true
+# for android_system_disk_vid android_data_disk_vdi installer_vd
+$(warning not include other makefile for vdi targets)
+include $(TOPDIR)bootable/diskinstaller/Android.mk
+include $(TOPDIR)external/grub/Android.mk
+include $(TOPDIR)external/compiler-rt//Android.mk
+include $(TOPDIR)system/core/libdiskconfig/Android.mk
+include $(TOPDIR)system/core/libcutils/Android.mk
+include $(TOPDIR)system/core/liblog/Android.mk
+# vdi_subdir_makefiles := \
+# 	$(shell build/tools/findleaves.py --prune=$(OUT_DIR) --prune=.repo --prune=.git $(TOPDIR)system/core/ Android.mk)
+
+# $(foreach mk, $(vdi_subdir_makefiles), $(info including $(mk) ...)$(eval include $(mk)))
+endif
+
 # -----------------------------------------------------------------
 # Variable to check java support level inside PDK build.
 # Not necessary if the components is not in PDK.
