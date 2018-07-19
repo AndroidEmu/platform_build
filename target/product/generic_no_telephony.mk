@@ -19,6 +19,8 @@
 
 PRODUCT_POLICY := android.policy_phone
 
+
+#LatinIME
 PRODUCT_PACKAGES := \
     DeskClock \
     Bluetooth \
@@ -31,8 +33,6 @@ PRODUCT_PACKAGES := \
     Gallery \
     InputDevices \
     Keyguard \
-    LatinIME \
-    Launcher2 \
     Music \
     MusicFX \
     OneTimeInitializer \
@@ -47,6 +47,8 @@ PRODUCT_PACKAGES := \
     hostapd \
     wpa_supplicant.conf \
     WallpaperCropper
+    
+    #Launcher2 \
 
 PRODUCT_PACKAGES += \
     audio \
